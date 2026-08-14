@@ -74,7 +74,9 @@ export default function PaymentsPanel({ state, dispatch, transfers }: Props) {
                         if (e.key === 'Enter') recordPayment(t);
                       }}
                     />
-                    <button onClick={() => recordPayment(t)}>Record payment</button>
+                    <button className="btn-success" onClick={() => recordPayment(t)}>
+                      Record payment
+                    </button>
                   </div>
                 </div>
                 {errors[key] && <p className="error">{errors[key]}</p>}
@@ -94,7 +96,7 @@ export default function PaymentsPanel({ state, dispatch, transfers }: Props) {
               <span>
                 {nameOf(s.from)} paid {nameOf(s.to)} {formatLKR(s.amount)}
               </span>
-              <button className="link-button" onClick={() => undoSettlement(s.id)}>
+              <button className="link-button danger" onClick={() => undoSettlement(s.id)}>
                 Undo
               </button>
             </li>

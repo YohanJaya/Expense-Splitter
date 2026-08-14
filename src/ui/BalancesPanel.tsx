@@ -1,5 +1,5 @@
 import type { AppState, Cents, PersonId } from '../core/types';
-import { formatSigned } from '../core/money';
+import { formatLKR } from '../core/money';
 
 interface Props {
   state: AppState;
@@ -17,7 +17,8 @@ export default function BalancesPanel({ state, balances }: Props) {
           <thead>
             <tr>
               <th>Person</th>
-              <th>Net</th>
+              <th>To receive</th>
+              <th>To pay</th>
             </tr>
           </thead>
           <tbody>
@@ -26,9 +27,8 @@ export default function BalancesPanel({ state, balances }: Props) {
               return (
                 <tr key={p.id}>
                   <td>{p.name}</td>
-                  <td className={amount > 0 ? 'owed' : amount < 0 ? 'owes' : ''}>
-                    {formatSigned(amount)}
-                  </td>
+                  <td className="owed">{amount > 0 ? formatLKR(amount) : '—'}</td>
+                  <td className="owes">{amount < 0 ? formatLKR(-amount) : '—'}</td>
                 </tr>
               );
             })}

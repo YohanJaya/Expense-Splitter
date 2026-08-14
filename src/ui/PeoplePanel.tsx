@@ -43,7 +43,9 @@ export default function PeoplePanel({ state, dispatch }: Props) {
             if (e.key === 'Enter') addPerson();
           }}
         />
-        <button onClick={addPerson}>Add</button>
+        <button className="btn-success" onClick={addPerson}>
+          Add
+        </button>
       </div>
 
       {error && <p className="error">{error}</p>}
@@ -56,7 +58,7 @@ export default function PeoplePanel({ state, dispatch }: Props) {
         {state.people.map((p) => (
           <li key={p.id}>
             <span>{p.name}</span>
-            <button className="link-button" onClick={() => removePerson(p.id)}>
+            <button className="link-button danger" onClick={() => removePerson(p.id)}>
               Remove
             </button>
           </li>

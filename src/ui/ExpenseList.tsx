@@ -47,7 +47,7 @@ export default function ExpenseList({ state, dispatch, onEdit }: Props) {
                   Edit
                 </button>
                 <button
-                  className="link-button"
+                  className="link-button danger"
                   onClick={() => dispatch({ type: 'DELETE_EXPENSE', expenseId: expense.id })}
                 >
                   Delete

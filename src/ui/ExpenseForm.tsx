@@ -305,9 +305,11 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
         {formError && <p className="error">{formError}</p>}
 
         <div className="row">
-          <button type="submit">{editingExpense ? 'Save changes' : 'Add expense'}</button>
+          <button type="submit" className="btn-success">
+            {editingExpense ? 'Save changes' : 'Add expense'}
+          </button>
           {editingExpense && (
-            <button type="button" onClick={() => onDoneEditing()}>
+            <button type="button" className="btn-secondary" onClick={() => onDoneEditing()}>
               Cancel
             </button>
           )}

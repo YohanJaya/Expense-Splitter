@@ -40,7 +40,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>Expense Splitter</h1>
-        <button className="link-button" onClick={resetSession}>
+        <button className="link-button warn" onClick={resetSession}>
           New session
         </button>
       </header>
