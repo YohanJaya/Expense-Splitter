@@ -35,13 +35,6 @@ export default function PaymentsPanel({ state, dispatch, transfers }: Props) {
       setErrors((prev) => ({ ...prev, [key]: 'Amount must be greater than zero.' }));
       return;
     }
-    if (amount > t.amount) {
-      setErrors((prev) => ({
-        ...prev,
-        [key]: `Cannot exceed the outstanding ${formatLKR(t.amount)}.`,
-      }));
-      return;
-    }
     setErrors((prev) => ({ ...prev, [key]: '' }));
     setAmountInputs((prev) => ({ ...prev, [key]: '' }));
     dispatch({

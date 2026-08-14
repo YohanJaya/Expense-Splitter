@@ -1,5 +1,5 @@
 import type { AppState, Cents, PersonId } from '../core/types';
-import { formatSigned, formatLKR } from '../core/money';
+import { formatSigned } from '../core/money';
 
 interface Props {
   state: AppState;
@@ -7,8 +7,6 @@ interface Props {
 }
 
 export default function BalancesPanel({ state, balances }: Props) {
-  const total = [...balances.values()].reduce((a, b) => a + b, 0);
-
   return (
     <section className="panel">
       <h2>Balances</h2>
@@ -35,12 +33,6 @@ export default function BalancesPanel({ state, balances }: Props) {
               );
             })}
           </tbody>
-          <tfoot>
-            <tr>
-              <td>Sum</td>
-              <td>{formatLKR(total)}</td>
-            </tr>
-          </tfoot>
         </table>
       )}
     </section>
