@@ -26,6 +26,14 @@ export interface AppState {
   people: Person[];
   expenses: Expense[];
   settlements: Settlement[];
+  log: LogEntry[];
+}
+
+/** A human-readable record of something that happened, newest first. */
+export interface LogEntry {
+  id: string;
+  timestamp: number;
+  message: string;
 }
 
 export interface Transfer {

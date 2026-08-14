@@ -41,6 +41,7 @@ describe('brief acceptance scenario', () => {
       },
     ],
     settlements: [],
+    log: [],
   };
 
   it('produces the exact expected balances in cents', () => {

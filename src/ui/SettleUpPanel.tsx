@@ -33,6 +33,27 @@ export default function SettleUpPanel({ state, transfers }: Props) {
           ))}
         </ol>
       )}
+
+      <h3>Activity log</h3>
+      {state.log.length === 0 ? (
+        <p className="empty">Nothing has happened yet.</p>
+      ) : (
+        <ul className="log-list">
+          {state.log.map((entry) => (
+            <li key={entry.id}>
+              <span className="log-message">{entry.message}</span>
+              <span className="log-time">
+                {new Date(entry.timestamp).toLocaleString(undefined, {
+                  month: 'short',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit',
+                })}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

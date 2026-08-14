@@ -12,6 +12,7 @@ function state(expenses: Expense[]): AppState {
     ],
     expenses,
     settlements: [],
+    log: [],
   };
 }
 
