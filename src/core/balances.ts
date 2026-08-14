@@ -15,6 +15,11 @@ export function computeBalances(state: AppState): Map<PersonId, Cents> {
     }
   }
 
+  for (const settlement of state.settlements) {
+    balances.set(settlement.from, (balances.get(settlement.from) ?? 0) + settlement.amount);
+    balances.set(settlement.to, (balances.get(settlement.to) ?? 0) - settlement.amount);
+  }
+
   const sum = [...balances.values()].reduce((a, b) => a + b, 0);
   if (sum !== 0) {
     throw new Error(`computeBalances() invariant violated: balances sum to ${sum}, expected 0`);

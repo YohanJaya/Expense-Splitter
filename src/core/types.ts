@@ -25,9 +25,18 @@ export interface Expense {
 export interface AppState {
   people: Person[];
   expenses: Expense[];
+  settlements: Settlement[];
 }
 
 export interface Transfer {
+  from: PersonId;
+  to: PersonId;
+  amount: Cents;
+}
+
+/** A recorded real-world payment made to reduce a balance between two people. */
+export interface Settlement {
+  id: string;
   from: PersonId;
   to: PersonId;
   amount: Cents;
