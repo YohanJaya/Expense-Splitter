@@ -21,7 +21,14 @@ export default function SettleUpPanel({ state, transfers }: Props) {
         <ol className="transfer-list">
           {transfers.map((t, i) => (
             <li key={i}>
-              {nameOf(t.from)} pays {nameOf(t.to)} {formatLKR(t.amount)}
+              <div className="transfer-card">
+                <span className="transfer-parties">
+                  {nameOf(t.from)}
+                  <span className="transfer-arrow">&rarr;</span>
+                  {nameOf(t.to)}
+                </span>
+                <span className="transfer-amount currency">{formatLKR(t.amount)}</span>
+              </div>
             </li>
           ))}
         </ol>

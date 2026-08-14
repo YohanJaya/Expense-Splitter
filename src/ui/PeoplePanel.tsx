@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { AppState } from '../core/types';
 import type { Action } from '../state/reducer';
+import { initials, avatarClass } from './avatar';
 
 interface Props {
   state: AppState;
@@ -57,7 +58,10 @@ export default function PeoplePanel({ state, dispatch }: Props) {
       <ul className="people-list">
         {state.people.map((p) => (
           <li key={p.id}>
-            <span>{p.name}</span>
+            <span className="person-info">
+              <span className={`avatar ${avatarClass(p.id)}`}>{initials(p.name)}</span>
+              {p.name}
+            </span>
             <button className="link-button danger" onClick={() => removePerson(p.id)}>
               Remove
             </button>

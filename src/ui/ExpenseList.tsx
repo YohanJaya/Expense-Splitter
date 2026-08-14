@@ -39,7 +39,7 @@ export default function ExpenseList({ state, dispatch, onEdit }: Props) {
           {state.expenses.map((expense) => (
             <tr key={expense.id}>
               <td>{expense.description}</td>
-              <td>{formatLKR(expense.amount)}</td>
+              <td className="currency">{formatLKR(expense.amount)}</td>
               <td>{nameOf(expense.paidBy)}</td>
               <td>{expense.split.kind === 'equal' ? 'Equal' : 'Exact'}</td>
               <td className="row">

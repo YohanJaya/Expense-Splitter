@@ -60,7 +60,8 @@ export default function PaymentsPanel({ state, dispatch, transfers }: Props) {
               <li key={key}>
                 <div className="transfer-row">
                   <span>
-                    {nameOf(t.from)} owes {nameOf(t.to)} {formatLKR(t.amount)}
+                    {nameOf(t.from)} owes {nameOf(t.to)}{' '}
+                    <span className="currency">{formatLKR(t.amount)}</span>
                   </span>
                   <div className="row">
                     <input
@@ -94,7 +95,8 @@ export default function PaymentsPanel({ state, dispatch, transfers }: Props) {
           {state.settlements.map((s) => (
             <li key={s.id}>
               <span>
-                {nameOf(s.from)} paid {nameOf(s.to)} {formatLKR(s.amount)}
+                {nameOf(s.from)} paid {nameOf(s.to)}{' '}
+                <span className="currency">{formatLKR(s.amount)}</span>
               </span>
               <button className="link-button danger" onClick={() => undoSettlement(s.id)}>
                 Undo

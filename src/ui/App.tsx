@@ -47,7 +47,7 @@ export default function App() {
 
       <nav className="tabs">
         <button className={tab === 'people' ? 'active' : ''} onClick={() => setTab('people')}>
-          1. People
+          1. Members
         </button>
         <button
           className={tab === 'expenses' ? 'active' : ''}
@@ -64,18 +64,18 @@ export default function App() {
           3. Balances
         </button>
         <button
-          className={tab === 'settle' ? 'active' : ''}
-          onClick={() => setTab('settle')}
-          disabled={state.people.length === 0}
-        >
-          4. Settle up
-        </button>
-        <button
           className={tab === 'payments' ? 'active' : ''}
           onClick={() => setTab('payments')}
           disabled={state.people.length === 0}
         >
-          5. Payments
+          4. Payments
+        </button>
+        <button
+          className={tab === 'settle' ? 'active' : ''}
+          onClick={() => setTab('settle')}
+          disabled={state.people.length === 0}
+        >
+          5. Summary
         </button>
       </nav>
 
@@ -110,6 +110,8 @@ export default function App() {
           <PaymentsPanel state={state} dispatch={dispatch} transfers={transfers} />
         )}
       </main>
+
+      <footer className="app-footer">Expense Splitter — split fairly, settle simply.</footer>
     </div>
   );
 }

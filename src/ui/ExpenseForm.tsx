@@ -238,9 +238,9 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
           ))}
         </fieldset>
 
-        <fieldset>
-          <legend>Split method</legend>
-          <label className="checkbox-row">
+        <label>Split method</label>
+        <div className="segmented" role="group">
+          <label className={splitKind === 'equal' ? 'segment-active' : ''}>
             <input
               type="radio"
               name="split"
@@ -249,7 +249,7 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
             />
             Equal
           </label>
-          <label className="checkbox-row">
+          <label className={splitKind === 'exact' ? 'segment-active' : ''}>
             <input
               type="radio"
               name="split"
@@ -258,7 +258,7 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
             />
             Exact amount
           </label>
-        </fieldset>
+        </div>
 
         {splitKind === 'exact' && (
           <div className="exact-inputs">
@@ -294,7 +294,8 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
             <ul>
               {participantList.map((p) => (
                 <li key={p.id}>
-                  {p.name}: {formatLKR(preview![p.id] ?? 0)}
+                  <span>{p.name}</span>
+                  <span className="currency">{formatLKR(preview![p.id] ?? 0)}</span>
                 </li>
               ))}
             </ul>
