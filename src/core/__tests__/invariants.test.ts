@@ -49,6 +49,7 @@ const arbState = fc
       (expenses): AppState => ({
         people: ids.map((id) => ({ id, name: id })),
         expenses,
+        settlements: [],
       })
     );
   });

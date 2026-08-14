@@ -24,7 +24,7 @@ export function loadState(): AppState {
     if (parsed.version !== VERSION || !isValidAppState(parsed.state)) {
       return initialState;
     }
-    return parsed.state;
+    return { ...parsed.state, settlements: parsed.state.settlements ?? [] };
   } catch {
     return initialState;
   }

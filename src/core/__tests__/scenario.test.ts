@@ -40,6 +40,7 @@ describe('brief acceptance scenario', () => {
         split: { kind: 'equal' },
       },
     ],
+    settlements: [],
   };
 
   it('produces the exact expected balances in cents', () => {

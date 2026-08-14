@@ -9,8 +9,9 @@ import ExpenseForm from './ExpenseForm';
 import ExpenseList from './ExpenseList';
 import BalancesPanel from './BalancesPanel';
 import SettleUpPanel from './SettleUpPanel';
+import PaymentsPanel from './PaymentsPanel';
 
-type Tab = 'people' | 'expenses' | 'balances' | 'settle';
+type Tab = 'people' | 'expenses' | 'balances' | 'settle' | 'payments';
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, () => loadState() ?? initialState);
@@ -55,6 +56,13 @@ export default function App() {
         >
           4. Settle up
         </button>
+        <button
+          className={tab === 'payments' ? 'active' : ''}
+          onClick={() => setTab('payments')}
+          disabled={state.people.length === 0}
+        >
+          5. Payments
+        </button>
       </nav>
 
       <main>
@@ -82,6 +90,10 @@ export default function App() {
 
         {tab === 'settle' && (
           <SettleUpPanel state={state} transfers={transfers} peopleCount={state.people.length} />
+        )}
+
+        {tab === 'payments' && (
+          <PaymentsPanel state={state} dispatch={dispatch} transfers={transfers} />
         )}
       </main>
     </div>

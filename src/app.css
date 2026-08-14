@@ -233,10 +233,36 @@ tfoot td {
 }
 
 .transfer-list li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.transfer-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.transfer-row input[type='text'] {
+  width: 6rem;
 }
 
 .note {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.settlement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.settlement-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f0f0f0;
   color: #555;
   font-size: 0.9rem;
 }

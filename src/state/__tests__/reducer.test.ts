@@ -28,6 +28,7 @@ describe('reducer', () => {
         { id: 'b', name: 'Bob' },
       ],
       expenses: [expense],
+      settlements: [],
     };
     expect(() => reducer(state, { type: 'REMOVE_PERSON', personId: 'a' })).toThrow(
       PersonInUseError

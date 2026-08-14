@@ -11,6 +11,7 @@ function state(expenses: Expense[]): AppState {
       { id: 'dave', name: 'Dave' },
     ],
     expenses,
+    settlements: [],
   };
 }
 
