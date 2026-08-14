@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { AppState, Expense, PersonId, SplitMethod } from '../core/types';
+import { SplitMismatchError } from '../core/types';
 import type { Action } from '../state/reducer';
 import { toCents, formatLKR } from '../core/money';
 import { allocate, hashToInt } from '../core/allocate';
@@ -105,7 +106,14 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
         hashToInt(editingExpense?.id ?? 'preview')
       );
     } catch (e) {
-      previewError = e instanceof Error ? e.message : 'Invalid split';
+      if (e instanceof SplitMismatchError) {
+        previewError =
+          e.delta > 0
+            ? `Shares are ${formatLKR(e.delta)} over the total.`
+            : `Shares are ${formatLKR(-e.delta)} under the total.`;
+      } else {
+        previewError = e instanceof Error ? e.message : 'Invalid split';
+      }
     }
   }
 
