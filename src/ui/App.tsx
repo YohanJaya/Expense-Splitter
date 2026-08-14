@@ -25,10 +25,24 @@ export default function App() {
   const balances = useMemo(() => computeBalances(state), [state]);
   const transfers = useMemo(() => settleUp(balances), [balances]);
 
+  function resetSession() {
+    if (state.people.length === 0 && state.expenses.length === 0) {
+      dispatch({ type: 'RESET' });
+      return;
+    }
+    if (window.confirm('Start a new session? This clears all people, expenses, and payments.')) {
+      dispatch({ type: 'RESET' });
+      setTab('people');
+    }
+  }
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Expense Splitter</h1>
+        <button className="link-button" onClick={resetSession}>
+          New session
+        </button>
       </header>
 
       <nav className="tabs">

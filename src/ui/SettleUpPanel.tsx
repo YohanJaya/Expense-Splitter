@@ -18,7 +18,7 @@ export default function SettleUpPanel({ state, transfers, peopleCount }: Props) 
 
   return (
     <section className="panel">
-      <h2>Settle up</h2>
+      <h2>Summary</h2>
       {transfers.length === 0 ? (
         <p className="empty">Everyone is settled up.</p>
       ) : (
