@@ -67,10 +67,12 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
   );
 
   let totalCents: number | null = null;
+  let amountError: string | null = null;
   try {
     totalCents = amountInput.trim() ? toCents(amountInput) : null;
-  } catch {
+  } catch (e) {
     totalCents = null;
+    amountError = e instanceof Error ? e.message : 'Invalid amount';
   }
 
   const exactSumCents = participantList.reduce((sum, p) => {
@@ -116,7 +118,7 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
       return;
     }
     if (totalCents === null || totalCents <= 0) {
-      setFormError('Enter a valid amount.');
+      setFormError(amountError ?? 'Enter a valid amount.');
       return;
     }
     if (!paidBy) {
@@ -198,6 +200,7 @@ export default function ExpenseForm({ state, dispatch, editingExpense, onDoneEdi
             onChange={(e) => setAmountInput(e.target.value)}
           />
         </label>
+        {amountInput.trim() !== '' && amountError && <p className="error">{amountError}</p>}
 
         <label>
           Paid by

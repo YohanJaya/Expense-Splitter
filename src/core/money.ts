@@ -5,6 +5,9 @@ import type { Cents } from './types';
  * Accepts "12000", "12,000", "12000.5", "12,000.00".
  * Throws on negative or non-numeric input.
  */
+/** Largest amount accepted, in cents (Rs. 999,999,999.99). */
+export const MAX_CENTS: Cents = 99_999_999_999;
+
 export function toCents(input: string): Cents {
   const cleaned = input.replace(/,/g, '').trim();
   if (!/^\d+(\.\d*)?$/.test(cleaned)) {
@@ -12,7 +15,11 @@ export function toCents(input: string): Cents {
   }
   const [intPart, fracPartRaw = ''] = cleaned.split('.');
   const fracPart = (fracPartRaw + '00').slice(0, 2);
-  return Number(intPart) * 100 + Number(fracPart);
+  const cents = Number(intPart) * 100 + Number(fracPart);
+  if (cents > MAX_CENTS) {
+    throw new Error(`Amount is too large (max ${formatLKR(MAX_CENTS)})`);
+  }
+  return cents;
 }
 
 /** Formats cents as "Rs. 12,000.00". Negative values are shown as-is (no sign). */
